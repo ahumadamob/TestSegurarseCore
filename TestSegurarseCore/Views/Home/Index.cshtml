@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    
+} 
+@model TestSegurarseCore.Models.Persona
+
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Datos del cuerpo de la petición</h2>
+        <form method="post" asp-action="EnviarFormulario">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>                
+                <input type="text" class="form-control" id="nombre" name="Nombre" required minlength="3">
+                <div class="invalid-feedback">El nombre debe tener un mínimo de 3 caracteres.</div>
+
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>                
+                <input type="text" class="form-control" id="apellido" name="Apellido" required minlength="3">
+                <div class="invalid-feedback">El nombre debe tener un mínimo de 3 caracteres.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var form = document.getElementById('formulario');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+
+</body>
+
+</html>
