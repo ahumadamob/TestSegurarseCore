@@ -26,7 +26,7 @@ namespace TestSegurarseCore.Controllers
         public async Task<IActionResult> EnviarFormulario(Persona persona)
         {
             var result = await _testEncriptService.Test(persona);
-            ApiResponse apiResponse = JsonSerializer.Deserialize<ApiResponse>(result);
+            ApiResponse? apiResponse = JsonSerializer.Deserialize<ApiResponse>(result);
             ViewBag.Message = apiResponse.result;
             return View("Message");
         }
@@ -44,8 +44,5 @@ namespace TestSegurarseCore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-    public class ApiResponse
-    {
-        public string result { get; set; }
-    }
+    
 }
